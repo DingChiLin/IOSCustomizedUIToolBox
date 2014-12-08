@@ -16,8 +16,7 @@
 		012B928F1A317BA800989B36 /* IOSCustomizedUIToolBoxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 012B928E1A317BA800989B36 /* IOSCustomizedUIToolBoxTests.m */; };
 		012B929B1A317BF400989B36 /* delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 012B92991A317BF400989B36 /* delete.png */; };
 		012B929C1A317BF400989B36 /* phone_press.png in Resources */ = {isa = PBXBuildFile; fileRef = 012B929A1A317BF400989B36 /* phone_press.png */; };
-		012B92A41A317CC500989B36 /* ArthurNumberPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 012B92A31A317CC500989B36 /* ArthurNumberPad.m */; };
-		012B92A71A317CE500989B36 /* NumberPadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 012B92A61A317CE500989B36 /* NumberPadViewController.m */; };
+		012B92A41A317CC500989B36 /* ALNumberPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 012B92A31A317CC500989B36 /* ALNumberPad.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,10 +45,8 @@
 		012B928E1A317BA800989B36 /* IOSCustomizedUIToolBoxTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IOSCustomizedUIToolBoxTests.m; sourceTree = "<group>"; };
 		012B92991A317BF400989B36 /* delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete.png; sourceTree = "<group>"; };
 		012B929A1A317BF400989B36 /* phone_press.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = phone_press.png; sourceTree = "<group>"; };
-		012B92A21A317CC500989B36 /* ArthurNumberPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArthurNumberPad.h; sourceTree = "<group>"; };
-		012B92A31A317CC500989B36 /* ArthurNumberPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArthurNumberPad.m; sourceTree = "<group>"; };
-		012B92A51A317CE500989B36 /* NumberPadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumberPadViewController.h; sourceTree = "<group>"; };
-		012B92A61A317CE500989B36 /* NumberPadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberPadViewController.m; sourceTree = "<group>"; };
+		012B92A21A317CC500989B36 /* ALNumberPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALNumberPad.h; sourceTree = "<group>"; };
+		012B92A31A317CC500989B36 /* ALNumberPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALNumberPad.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +67,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		011032501A354244009E2E1A /* ActionSheet */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ActionSheet;
+			sourceTree = "<group>";
+		};
+		011032511A354248009E2E1A /* AlertView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AlertView;
+			sourceTree = "<group>";
+		};
 		012B92661A317BA800989B36 = {
 			isa = PBXGroup;
 			children = (
@@ -97,6 +108,8 @@
 				012B92791A317BA800989B36 /* ViewController.h */,
 				012B927A1A317BA800989B36 /* ViewController.m */,
 				012B92A11A317CC500989B36 /* NumberPad */,
+				011032501A354244009E2E1A /* ActionSheet */,
+				011032511A354248009E2E1A /* AlertView */,
 				012B927C1A317BA800989B36 /* Main.storyboard */,
 				012B927F1A317BA800989B36 /* Images.xcassets */,
 				012B92811A317BA800989B36 /* LaunchScreen.xib */,
@@ -143,10 +156,8 @@
 		012B92A11A317CC500989B36 /* NumberPad */ = {
 			isa = PBXGroup;
 			children = (
-				012B92A51A317CE500989B36 /* NumberPadViewController.h */,
-				012B92A61A317CE500989B36 /* NumberPadViewController.m */,
-				012B92A21A317CC500989B36 /* ArthurNumberPad.h */,
-				012B92A31A317CC500989B36 /* ArthurNumberPad.m */,
+				012B92A21A317CC500989B36 /* ALNumberPad.h */,
+				012B92A31A317CC500989B36 /* ALNumberPad.m */,
 			);
 			path = NumberPad;
 			sourceTree = "<group>";
@@ -253,8 +264,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				012B92A71A317CE500989B36 /* NumberPadViewController.m in Sources */,
-				012B92A41A317CC500989B36 /* ArthurNumberPad.m in Sources */,
+				012B92A41A317CC500989B36 /* ALNumberPad.m in Sources */,
 				012B927B1A317BA800989B36 /* ViewController.m in Sources */,
 				012B92781A317BA800989B36 /* AppDelegate.m in Sources */,
 				012B92751A317BA800989B36 /* main.m in Sources */,
@@ -452,6 +462,7 @@
 				012B92941A317BA800989B36 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		012B92951A317BA800989B36 /* Build configuration list for PBXNativeTarget "IOSCustomizedUIToolBoxTests" */ = {
 			isa = XCConfigurationList;
@@ -460,6 +471,7 @@
 				012B92971A317BA800989B36 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

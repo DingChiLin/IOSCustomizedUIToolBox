@@ -6,37 +6,27 @@
 //  Copyright (c) 2014年 Arthur Lin. All rights reserved.
 //
 
-#import "ArthurNumberPad.h"
+#import "ALNumberPad.h"
 
-@interface ArthurNumberPad(){
+@interface ALNumberPad()<UITextFieldDelegate>{
     float numberButtonWidth;
     float numberButtonHeight;
 }
 
-//@property(nonatomic,retain) NSString *title;
-//@property(nonatomic,retain) NSString *cancelTitle;
-//@property(nonatomic,retain) NSArray *otherTitles;
-
 @property(nonatomic,retain) UIView *backgroundView;
-//@property(nonatomic,retain) UIView *coverView;
 @property(nonatomic,retain) UIImageView *buttonBgImageView;
 
 @property(nonatomic) int buttonBgHeight;
 
 @end
 
-@implementation ArthurNumberPad
+@implementation ALNumberPad
 
 - (void)dealloc{
-    
-//    self.title = nil;
-//    self.cancelTitle = nil;
-//    self.otherTitles = nil;
-    
+
     self.backgroundView = nil;
-//    self.coverView = nil;
     self.buttonBgImageView = nil;
-    
+
     [super dealloc];
 }
 
@@ -44,60 +34,28 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        
-        
+        [self initData];
     }
     return self;
 }
 
-//- (id)initWithTitle:(NSString *)title delegate:(id<E8DPokeActionSheetDelegate>)delegate cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ...{
-//    
-//    self = [super init];
-//    if (self) {
-//        
-//        NSMutableArray *arguments=[[NSMutableArray alloc]initWithArray:nil];
-//        id eachObject;
-//        va_list argumentList;
-//        if (otherButtonTitles)
-//        {
-//            [arguments addObject: otherButtonTitles];
-//            va_start(argumentList, otherButtonTitles);
-//            while ((eachObject = va_arg(argumentList, id)))
-//            {
-//                [arguments addObject: eachObject];
-//            }
-//            va_end(argumentList);
-//        }
-//        
-//        self.title = title;
-//        self.delegate = delegate;
-//        self.cancelTitle = cancelButtonTitle;
-//        self.otherTitles = arguments;
-//        
-//        self.buttonBgHeight = 100 + 60 + (int)[arguments count]*65;
-//        
-//        [arguments release];
-//        
-//        [self setLayout];
-//    }
-//    return self;
-//    
-//}
-
 - (id)init{
     self = [super init];
     if(self){
-        
-        [self setLayout];
-
+        [self initData];
     }
     return self;
+}
+
+- (void)initData{
+    self.isShowCancelButton=YES;
 }
 
 - (void)setLayout{
     
     [super layoutSubviews];
     
+    self.userInteractionEnabled = YES;
     self.backgroundColor = [UIColor clearColor];
     
     CGRect screenRect = [[UIScreen mainScreen] bounds];
@@ -107,12 +65,10 @@
     numberButtonWidth = screenWidth/3;
     numberButtonHeight = 52;
     
-    //背景透明圖 (阻擋parent view按鈕響應)
     self.backgroundView = [[UIView new]autorelease];
     self.backgroundView.backgroundColor = [UIColor clearColor];
-    self.backgroundView.frame = CGRectMake(0, 0, screenWidth,screenHeight);
+    self.backgroundView.frame = CGRectMake(0, screenHeight-numberButtonHeight*4, screenWidth,numberButtonHeight*4);
     self.backgroundView.userInteractionEnabled = YES;
-    self.backgroundView.exclusiveTouch = YES;
     [self addSubview:self.backgroundView];
     
     /**
@@ -120,14 +76,14 @@
      */
     
     UIColor *lineColor = [UIColor grayColor];
-
+    
     
     UIView *hLine1 = [UIView new];
     hLine1.frame = CGRectMake(0,self.backgroundView.bounds.size.height-numberButtonHeight*4, 320, 1);
     hLine1.backgroundColor = lineColor;
     [self.backgroundView addSubview:hLine1];
     [hLine1 release];
-
+    
     UIView *hLine2 = [UIView new];
     hLine2.frame = CGRectMake(0,self.backgroundView.bounds.size.height-numberButtonHeight*3, 320, 1);
     hLine2.backgroundColor = lineColor;
@@ -164,7 +120,7 @@
     
     UIButton *numberButton1 = [self getNumberButtonWithTitle:@"1" AndTagNumber:1 andXOffset:0 andYOffset:4];
     [self.backgroundView addSubview:numberButton1];
-
+    
     UIButton *numberButton2 = [self getNumberButtonWithTitle:@"2" AndTagNumber:2 andXOffset:1 andYOffset:4];
     [self.backgroundView addSubview:numberButton2];
     
@@ -206,12 +162,18 @@
     numberButtonCancel.frame = CGRectMake(numberButtonWidth*0+1, self.backgroundView.bounds.size.height-numberButtonHeight*1+1, numberButtonWidth-2, numberButtonHeight-2);
     [numberButtonCancel setTitle:@"取消" forState:UIControlStateNormal];
     numberButtonCancel.titleLabel.font = [UIFont systemFontOfSize:12];
-    [numberButtonCancel setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [numberButtonCancel setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
     [numberButtonCancel setBackgroundImage:[UIImage imageNamed:@"phone_press"] forState:UIControlStateHighlighted];
     [numberButtonCancel addTarget:self action:@selector(cancelButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     numberButtonCancel.tag = 222;
     [self.backgroundView addSubview:numberButtonCancel];
     [numberButtonCancel release];
+    
+    if(self.isShowCancelButton){
+        [numberButtonCancel setHidden:NO];
+    }else{
+        [numberButtonCancel setHidden:YES];
+    }
     
 }
 
@@ -220,6 +182,7 @@
     UIButton *numberButton = [UIButton new];
     
     numberButton.frame = CGRectMake(numberButtonWidth*xOffset+1, self.backgroundView.bounds.size.height-numberButtonHeight*yOffset+1, numberButtonWidth-2, numberButtonHeight-2);
+    numberButton.titleLabel.font = [UIFont systemFontOfSize:30];
     [numberButton setTitle:title forState:UIControlStateNormal];
     [numberButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [numberButton setBackgroundImage:[UIImage imageNamed:@"phone_press"] forState:UIControlStateHighlighted];
@@ -232,6 +195,8 @@
 
 - (void)showInView:(UIView *)view{
     
+    [self setLayout];
+    
     [view addSubview:self];
     
     [self.superview resignFirstResponder];
@@ -240,10 +205,7 @@
     CGFloat screenWidth = screenRect.size.width;
     CGFloat screenHeight = screenRect.size.height;
     
-    //    [view addSubview:self.backgroundView];
-    
     //讓View顯示在最上層
-    //    [[UIApplication sharedApplication].keyWindow addSubview:self.backgroundView];
     NSArray *windows = [[UIApplication sharedApplication] windows];;
     [[windows lastObject] addSubview:self.backgroundView];
     
@@ -260,78 +222,43 @@
 
 - (void)numberButtonClick:(UIButton *)button{
     
-    if([self.delegate respondsToSelector:@selector(chooseNumber:)]){
-        [self.delegate chooseNumber:button.tag];
+    if([self.delegate respondsToSelector:@selector(alNumberPadChoose:withNumber:)]){
+        [self.delegate alNumberPadChoose:self withNumber:(int)button.tag];
     }
 }
 
 - (void)deleteButtonClick:(UIButton *)button{
     
-    if([self.delegate respondsToSelector:@selector(deleteNumber)]){
-        [self.delegate deleteNumber];
+    if([self.delegate respondsToSelector:@selector(alNumberPadDeleteNumber:)]){
+        [self.delegate alNumberPadDeleteNumber:self];
     }
 }
 
 - (void)cancelButtonClick:(UIButton *)button{
     
-    if([self.delegate respondsToSelector:@selector(cancelNumberPad)]){
-        [self.delegate cancelNumberPad];
+    if([self.delegate respondsToSelector:@selector(alNumberPadCancelPad:)]){
+        [self.delegate alNumberPadCancelPad:self];
     }
 }
 
-//- (void)otherBbuttonClick:(id)sender{
-//    
-//    UIButton *button = (UIButton *)sender;
-//    if([self.delegate respondsToSelector:@selector(pokeActionSheet:clickedButtonAtIndex:)]){
-//        [self.delegate pokeActionSheet:self clickedButtonAtIndex:button.tag];
-//    }
-//    
-//    CGRect screenRect = [[UIScreen mainScreen] bounds];
-//    CGFloat screenWidth = screenRect.size.width;
-//    CGFloat screenHeight = screenRect.size.height;
-//    
-//    [UIView animateWithDuration:0.3
-//                          delay:0.1
-//                        options: UIViewAnimationOptionCurveEaseIn
-//                     animations:^{
-//                         self.buttonBgImageView.frame = CGRectMake(0, screenHeight, screenWidth, self.buttonBgHeight);
-//                     }
-//                     completion:^(BOOL finished){
-//                         if (finished)
-//                             [self.backgroundView removeFromSuperview];
-//                     }];
-//    
-//}
-//
-//- (void)cancelButtonClick:(id)sender{
-//    
-//    CGRect screenRect = [[UIScreen mainScreen] bounds];
-//    CGFloat screenWidth = screenRect.size.width;
-//    CGFloat screenHeight = screenRect.size.height;
-//    
-//    [UIView animateWithDuration:0.3
-//                          delay:0.1
-//                        options: UIViewAnimationOptionCurveEaseIn
-//                     animations:^{
-//                         self.buttonBgImageView.frame = CGRectMake(0, screenHeight, screenWidth, self.buttonBgHeight);
-//                     }
-//                     completion:^(BOOL finished){
-//                         if (finished)
-//                             [self.backgroundView removeFromSuperview];
-//                     }];
-//    
-//    if([self.delegate respondsToSelector:@selector(pokeActionSheet:clickedButtonAtIndex:)]){
-//        [self.delegate pokeActionSheet:self clickedButtonAtIndex:0];
-//    }
-//}
+- (void)resignFirstResponder{
+    
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenWidth = screenRect.size.width;
+    CGFloat screenHeight = screenRect.size.height;
+    
+    [UIView animateWithDuration:0.3
+                          delay:0.1
+                        options: UIViewAnimationOptionCurveEaseIn
+                     animations:^{
+                         self.buttonBgImageView.frame = CGRectMake(0, screenHeight, screenWidth, self.buttonBgHeight);
+                     }
+                     completion:^(BOOL finished){
+                         if (finished)
+                             [self.backgroundView removeFromSuperview];
+                     }];
+    
+}
 
-/*
- // Only override drawRect: if you perform custom drawing.
- // An empty implementation adversely affects performance during animation.
- - (void)drawRect:(CGRect)rect
- {
- // Drawing code
- }
- */
 
 @end
