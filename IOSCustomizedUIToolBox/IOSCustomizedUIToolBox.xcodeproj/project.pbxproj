@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		011032541A3542F6009E2E1A /* ALActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 011032531A3542F6009E2E1A /* ALActionSheet.m */; };
+		011032571A3545B8009E2E1A /* ALAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 011032561A3545B8009E2E1A /* ALAlertView.m */; };
+		011032591A354AA7009E2E1A /* logo.gif in Resources */ = {isa = PBXBuildFile; fileRef = 011032581A354AA7009E2E1A /* logo.gif */; };
+		0110325D1A354CF8009E2E1A /* button.png in Resources */ = {isa = PBXBuildFile; fileRef = 0110325C1A354CF8009E2E1A /* button.png */; };
 		012B92751A317BA800989B36 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 012B92741A317BA800989B36 /* main.m */; };
 		012B92781A317BA800989B36 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 012B92771A317BA800989B36 /* AppDelegate.m */; };
 		012B927B1A317BA800989B36 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 012B927A1A317BA800989B36 /* ViewController.m */; };
@@ -30,6 +34,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		011032521A3542F6009E2E1A /* ALActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALActionSheet.h; sourceTree = "<group>"; };
+		011032531A3542F6009E2E1A /* ALActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALActionSheet.m; sourceTree = "<group>"; };
+		011032551A3545B8009E2E1A /* ALAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALAlertView.h; sourceTree = "<group>"; };
+		011032561A3545B8009E2E1A /* ALAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALAlertView.m; sourceTree = "<group>"; };
+		011032581A354AA7009E2E1A /* logo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = logo.gif; sourceTree = "<group>"; };
+		0110325C1A354CF8009E2E1A /* button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button.png; sourceTree = "<group>"; };
 		012B926F1A317BA800989B36 /* IOSCustomizedUIToolBox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IOSCustomizedUIToolBox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		012B92731A317BA800989B36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		012B92741A317BA800989B36 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -70,6 +80,8 @@
 		011032501A354244009E2E1A /* ActionSheet */ = {
 			isa = PBXGroup;
 			children = (
+				011032521A3542F6009E2E1A /* ALActionSheet.h */,
+				011032531A3542F6009E2E1A /* ALActionSheet.m */,
 			);
 			path = ActionSheet;
 			sourceTree = "<group>";
@@ -77,6 +89,8 @@
 		011032511A354248009E2E1A /* AlertView */ = {
 			isa = PBXGroup;
 			children = (
+				011032551A3545B8009E2E1A /* ALAlertView.h */,
+				011032561A3545B8009E2E1A /* ALAlertView.m */,
 			);
 			path = AlertView;
 			sourceTree = "<group>";
@@ -149,6 +163,8 @@
 			children = (
 				012B92991A317BF400989B36 /* delete.png */,
 				012B929A1A317BF400989B36 /* phone_press.png */,
+				011032581A354AA7009E2E1A /* logo.gif */,
+				0110325C1A354CF8009E2E1A /* button.png */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -243,6 +259,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				012B929C1A317BF400989B36 /* phone_press.png in Resources */,
+				0110325D1A354CF8009E2E1A /* button.png in Resources */,
+				011032591A354AA7009E2E1A /* logo.gif in Resources */,
 				012B929B1A317BF400989B36 /* delete.png in Resources */,
 				012B927E1A317BA800989B36 /* Main.storyboard in Resources */,
 				012B92831A317BA800989B36 /* LaunchScreen.xib in Resources */,
@@ -264,7 +282,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				011032571A3545B8009E2E1A /* ALAlertView.m in Sources */,
 				012B92A41A317CC500989B36 /* ALNumberPad.m in Sources */,
+				011032541A3542F6009E2E1A /* ALActionSheet.m in Sources */,
 				012B927B1A317BA800989B36 /* ViewController.m in Sources */,
 				012B92781A317BA800989B36 /* AppDelegate.m in Sources */,
 				012B92751A317BA800989B36 /* main.m in Sources */,
